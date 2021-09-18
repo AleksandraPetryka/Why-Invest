@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import classes from './Form.module.css';
 import { Button, FormControl, TextField } from '@material-ui/core';
-import { calculate } from './calculations';
+import { calculate } from '../calculations';
+import Result from './Result';
+
 
 // const isEmpty = value => value.trim() === '';
 const FORM_FIELDS = {
@@ -59,6 +61,7 @@ const Form = (props) => {
 
     console.log(`log: calculate(form) = `, calculate(form));
     setResult(calculate(form));
+    window.scrollTo(0,document.body.scrollHeight);
   };
 
 
@@ -141,10 +144,7 @@ const Form = (props) => {
           <Button type="submit" variant="contained" color="primary">Submit</Button>
         </div>
       </form>
-      {result && <div className={classes.result}>
-        <p>Ending Amount: {result.endingAmount}</p>
-        <p>Ending Monthly Income: {result.endingMonthlyIncome}</p>
-      </div>}
+      {result && <Result result={result} />}
     </div>
   );
 };

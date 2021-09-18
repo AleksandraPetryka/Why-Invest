@@ -1,0 +1,12 @@
+.result {
+    font-family: sans-serif;
+    text-align: justify;
+    text-justify: inter-word;
+    margin-left: 30px;
+    font-size: 20px;
+}
+
+.result p {
+    margin: 4px 0;
+    color: rgba(0, 0, 0, 0.54);
+}
