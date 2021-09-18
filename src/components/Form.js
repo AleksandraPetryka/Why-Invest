@@ -8,16 +8,16 @@ import Result from './Result';
 // const isEmpty = value => value.trim() === '';
 const FORM_FIELDS = {
   startingAmount: 'startingAmount',
-  monthlyInvest: 'monthlyInvest',
-  yearsNumber: 'yearsNumber',
+  monthlyAmount: 'monthlyAmount',
+  years: 'years',
   yearlyReturn: 'yearlyReturn',
   incomeTax: 'incomeTax',
 };
 
 const initialFormState = {
   [FORM_FIELDS.startingAmount]: '',
-  [FORM_FIELDS.monthlyInvest]: '',
-  [FORM_FIELDS.yearsNumber]: '',
+  [FORM_FIELDS.monthlyAmount]: '',
+  [FORM_FIELDS.years]: '',
   [FORM_FIELDS.yearlyReturn]: '',
   [FORM_FIELDS.incomeTax]: '',
 };
@@ -59,8 +59,16 @@ const Form = (props) => {
     console.log(`log: form = `, form);
     event.preventDefault();
 
-    console.log(`log: calculate(form) = `, calculate(form));
-    setResult(calculate(form));
+    const parsedData = {
+      startingAmount: parseFloat(form.startingAmount),
+      monthlyAmount: parseFloat(form.monthlyAmount),
+      years: parseFloat(form.years),
+      yearlyReturn: parseFloat(form.yearlyReturn),
+      incomeTax: parseFloat(form.incomeTax),
+    };
+    console.log(`parsedData = `, parsedData);
+
+    setResult(calculate(parsedData));
     window.scrollTo(0,document.body.scrollHeight);
   };
 
@@ -85,8 +93,8 @@ const Form = (props) => {
           </FormControl>
           <FormControl fullWidth className={classes.margin}>
             <TextField
-              name={FORM_FIELDS.monthlyInvest}
-              value={form[FORM_FIELDS.monthlyInvest]}
+              name={FORM_FIELDS.monthlyAmount}
+              value={form[FORM_FIELDS.monthlyAmount]}
               onChange={changeHandler}
               label="2. Monthly invest amount"
               placeholder="Amount"
@@ -99,8 +107,8 @@ const Form = (props) => {
           </FormControl>
           <FormControl fullWidth className={classes.margin}>
             <TextField
-              name={FORM_FIELDS.yearsNumber}
-              value={form[FORM_FIELDS.yearsNumber]}
+              name={FORM_FIELDS.years}
+              value={form[FORM_FIELDS.years]}
               onChange={changeHandler}
               label="3. How many years you wanna invest"
               placeholder="Amount"
